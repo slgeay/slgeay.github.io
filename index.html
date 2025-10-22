@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sébastien Geay - Staff Software Engineer">
+    <title>Sébastien Geay - Staff Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #b078f0;
+            --bg-dark: #0d1117;
+            --bg-light-dark: #161b22;
+            --border-dark: #30363d;
+
+            --text-primary-dark-forced: #f0f6fc;
+            --text-secondary-dark-forced: #c9d1d9;
+            --primary-purple-dark-forced: #b078f0;
+            --light-primary-purple: #7e22ce;
+            --light-bg-dark: #f9fafb;
+            --light-bg-light-dark: #ffffff;
+            --light-border-dark: #e5e7eb;
+            --light-text-primary: #1a202c;
+            --light-text-secondary: #2d3748;
+            --light-text-muted: #4a5568;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-dark);
+            color: var(--text-secondary);
+            --text-primary: #f0f6fc;
+            --text-secondary: #c9d1d9;
+            --text-muted: #9ca3af;
+            --visual-skill-bg: var(--bg-light-dark);
+            font-size: 16px;
+        }
+
+        body.light-theme {
+            background-color: var(--light-bg-dark);
+            color: var(--light-text-primary);
+            --text-primary: var(--light-text-primary);
+            --text-secondary: var(--light-text-secondary);
+            --text-muted: var(--light-text-muted);
+            --visual-skill-bg: var(--light-bg-light-dark);
+
+            --text-primary-dark-forced: #f0f6fc;
+            --text-secondary-dark-forced: #c9d1d9;
+            --primary-purple-dark-forced: #b078f0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-dark);
+            flex-wrap: wrap;
+            gap: 1rem;
+            background-image: url('assets/background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2rem 2rem;
+            border-radius: 8px;
+        }
+
+        .header-info h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary-dark-forced);
+            margin-bottom: 0.25rem;
+        }
+
+        .header-info .headline {
+            font-size: 1.4rem;
+            color: var(--primary-purple-dark-forced);
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        .header-info .contact-links {
+            display: inline-flex;
+            gap: 0.75rem;
+            vertical-align: middle;
+        }
+
+        .header-info .contact-links a {
+            font-size: 1.2rem;
+            color: var(--text-secondary-dark-forced);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .header-info .contact-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            display: flex;
+            gap: 0.25rem;
+            background: var(--bg-light-dark);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .theme-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 16px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .theme-btn.active {
+            background: var(--primary-purple);
+            color: var(--text-primary);
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 0.25rem;
+            background: var(--bg-light-dark);
+            border-radius: 20px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 16px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-purple);
+            color: var(--text-primary);
+        }
+        .tabs {
+            display: flex;
+            margin: 2rem 0;
+            background-color: var(--bg-light-dark);
+            border-radius: 8px;
+            padding: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: none;
+            background: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tab-button:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-purple);
+            color: var(--text-primary);
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: initial;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .summary-text strong {
+            color: var(--primary-purple);
+            font-weight: 600;
+        }
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .expertise-tag-item {
+            background-color: var(--primary-purple);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .header .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .contact-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-links a:hover {
+            color: var(--primary-purple);
+        }
+        .visual-skills-section {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-dark);
+            padding-top: 1.5rem;
+        }
+        .visual-skills-section h3 {
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .visual-skills-category {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .visual-skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 95px;
+            height: 95px;
+            border: 1px solid var(--border-dark);
+            background-color: var(--visual-skill-bg);
+            padding: 10px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .visual-skill-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+            filter: grayscale(100%);
+            transition: none;
+        }
+
+        body.dark-theme .visual-skill-item img {
+            filter: invert(100%);
+        }
+
+        .visual-skill-item span {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+        }
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border-dark);
+        }
+        .experience-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--primary-purple);
+            border-radius: 50%;
+            border: 3px solid var(--bg-dark);
+        }
+        .experience-header h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+        .experience-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        .experience-description {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        .tech-stack {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .tech-stack strong {
+            color: var(--text-primary);
+        }
+        h4 {
+             color: var(--text-muted);
+             font-size: 0.95rem;
+             margin-top: 0.5rem;
+        }
+
+        .cert-link {
+            color: var(--primary-purple);
+            text-decoration: none;
+        }
+        .cert-link:hover {
+            text-decoration: underline;
+        }
+        .skill-category {
+            background-color: var(--bg-light-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-dark);
+            margin-bottom: 1.5rem;
+        }
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+        .skill-item {
+            margin-bottom: 0.5rem;
+        }
+        .skill-item strong {
+            color: var(--text-primary);
+        }
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .edu-item, .cert-item {
+            background-color: var(--bg-light-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-dark);
+        }
+        .edu-item strong, .cert-item strong {
+            display: block;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+        .edu-item span, .cert-item span {
+            color: var(--text-muted);
+        }
+        .cert-item em {
+            color: var(--primary-purple);
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .container {
+                margin: 1rem auto;
+            }
+        }
+
+         .contact-links .codingame-icon {
+            width: 0.9em;
+            height: 0.9em;
+            vertical-align: -4%;
+            transition: filter 0.3s ease-in-out;
+            filter: brightness(0) saturate(100%) invert(93%) sepia(10%) saturate(202%) hue-rotate(171deg) brightness(87%) contrast(96%);
+         }
+         .contact-links a:hover .codingame-icon {
+            filter: brightness(0) saturate(100%) invert(53%) sepia(49%) saturate(2654%) hue-rotate(228deg) brightness(100%) contrast(88%);
+         }
+
+         /* Tooltip styles */
+         .contact-links a {
+             position: relative;
+         }
+
+         .contact-links a::after {
+             content: attr(aria-label);
+             position: absolute;
+             bottom: 125%;
+             left: 50%;
+             transform: translateX(-50%);
+             background-color: var(--bg-dark);
+             color: var(--text-primary);
+             padding: 0.5rem 0.75rem;
+             border-radius: 4px;
+             font-size: 0.8rem;
+             white-space: nowrap;
+             opacity: 0;
+             pointer-events: none;
+             transition: opacity 0.3s ease, transform 0.3s ease;
+             z-index: 1000;
+             border: 1px solid var(--border-dark);
+             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+         }
+
+         .contact-links a:hover::after {
+             opacity: 1;
+             transform: translateX(-50%) translateY(-0.25rem);
+         }
+
+         /* Arrow for tooltip */
+         .contact-links a::before {
+             content: "";
+             position: absolute;
+             bottom: calc(125% - 0.25rem);
+             left: 50%;
+             transform: translateX(-50%);
+             border: 0.25rem solid transparent;
+             border-top-color: var(--bg-dark);
+             opacity: 0;
+             pointer-events: none;
+             transition: opacity 0.3s ease;
+             z-index: 1000;
+         }
+
+         .contact-links a:hover::before {
+             opacity: 1;
+         }
+
+         /* Responsive tooltip adjustments */
+         @media (max-width: 768px) {
+             .contact-links a::after {
+                 font-size: 0.75rem;
+                 padding: 0.4rem 0.6rem;
+             }
+
+             .contact-links a::before {
+                 border-width: 0.2rem;
+             }
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-info">
+                <h1>Sébastien Geay</h1>
+                <div class="lang-content active" data-lang="en">
+                    <div class="headline">Staff Software Engineer</div>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                    <div class="headline">Staff Software Engineer</div>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:geay_s@yahoo.fr" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <span class="lang-content active" data-lang="en">
+                        <a href="https://www.linkedin.com/in/sebastiengeay/?locale=en_US" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </span>
+                    <span class="lang-content" data-lang="fr">
+                        <a href="https://www.linkedin.com/in/sebastiengeay/?locale=fr_FR" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </span>
+                    <a href="https://www.codingame.com/profile/609b5164f06e1eedc84f5dd7e0a49600967872" target="_blank" aria-label="Codingame"><img src="assets/codingame.svg" alt="Codingame" class="codingame-icon"></a>
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="theme-toggle">
+                    <button class="theme-btn active" onclick="setTheme('dark')">Dark</button>
+                    <button class="theme-btn" onclick="setTheme('light')">Light</button>
+                </div>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage(event, 'en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage(event, 'fr')">FR</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'about')">
+                <span class="lang-content active" data-lang="en">About Me</span>
+                <span class="lang-content" data-lang="fr">À Propos</span>
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'skills')">
+                <span class="lang-content active" data-lang="en">Skills</span>
+                <span class="lang-content" data-lang="fr">Compétences</span>
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'experience')">
+                <span class="lang-content active" data-lang="en">Experience</span>
+                <span class="lang-content" data-lang="fr">Expérience</span>
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'education')">
+                <span class="lang-content active" data-lang="en">Education & Certifications</span>
+                <span class="lang-content" data-lang="fr">Formation & Certifications</span>
+            </button>
+        </nav>
+
+        <main>
+            <div id="about" class="tab-content active">
+                <div class="lang-content active" data-lang="en">
+                    <h2>About Me</h2>
+                    <p class="summary-text">
+                        Staff Software Engineer with <strong>18 years</strong> of experience, from <strong>R&D to large-scale production</strong>, in the design and development of distributed systems and backend applications.
+                    </p>
+                    <p class="summary-text">
+                        Passionate about creating <strong>reliable and clear architectures</strong>, with constant attention to <strong>quality</strong>, <strong>readability</strong>, and <strong>iterative delivery</strong>.
+                    </p>
+                    <p class="summary-text">
+                        Specialized in <strong>data modeling</strong>, <strong>API design</strong>, and <strong>software architecture</strong>, with a pragmatic approach to complex challenges.
+                    </p>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                    <h2>À Propos</h2>
+                    <p class="summary-text">
+                        Ingénieur logiciel Staff avec <strong>18 ans</strong> d'expérience, de la <strong>R&D à la production à grande échelle</strong>, dans la conception et le développement de systèmes distribués et d'applications backend.
+                    </p>
+                    <p class="summary-text">
+                        Passionné par la création d'<strong>architectures fiables et claires</strong>, avec une attention constante à la <strong>qualité</strong>, la <strong>lisibilité</strong> et la <strong>livraison itérative</strong>.
+                    </p>
+                    <p class="summary-text">
+                        Spécialisé en <strong>modélisation de données</strong>, <strong>design d'API</strong> et <strong>architecture logicielle</strong>, avec une approche pragmatique des problématiques complexes.
+                    </p>
+                </div>
+                
+                <div class="visual-skills-section">
+                    <div class="lang-content active" data-lang="en">
+                        <h3>Technologies</h3>
+                        <div class="visual-skills-category technologies-category">
+                            <div class="visual-skill-item"><img src="assets/visual-skills/python.svg" alt="Python"><span>Python</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/rust.svg" alt="Rust"><span>Rust</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/php.svg" alt="PHP"><span>PHP</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/cpp.svg" alt="C / C++"><span>C / C++</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/java.svg" alt="Java / Kotlin"><span>Java / Kotlin</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/ocaml.svg" alt="OCaml"><span>OCaml</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/go.svg" alt="Go"><span>Go</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/react.svg" alt="React"><span>React</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/graphql.svg" alt="GraphQL / REST"><span>GraphQL / REST</span></div>
+                        </div>
+                        <h3>Environments</h3>
+                        <div class="visual-skills-category environments-category">
+                            <div class="visual-skill-item"><img src="assets/visual-skills/postgresql.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/kafka.svg" alt="Kafka"><span>Kafka</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/cassandra.svg" alt="Cassandra"><span>Cassandra</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/elasticsearch.svg" alt="Elasticsearch"><span>Elasticsearch</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/bazel.svg" alt="Bazel"><span>Bazel</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/docker.svg" alt="Docker"><span>Docker</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/github.svg" alt="GitHub"><span>GitHub</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/unity.svg" alt="Unity"><span>Unity</span></div>
+                        </div>
+                    </div>
+                    <div class="lang-content" data-lang="fr">
+                        <h3>Technologies</h3>
+                        <div class="visual-skills-category technologies-category">
+                            <div class="visual-skill-item"><img src="assets/visual-skills/python.svg" alt="Python"><span>Python</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/rust.svg" alt="Rust"><span>Rust</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/php.svg" alt="PHP"><span>PHP</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/cpp.svg" alt="C / C++"><span>C / C++</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/java.svg" alt="Java / Kotlin"><span>Java / Kotlin</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/ocaml.svg" alt="OCaml"><span>OCaml</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/go.svg" alt="Go"><span>Go</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/react.svg" alt="React"><span>React</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/graphql.svg" alt="GraphQL / REST"><span>GraphQL / REST</span></div>
+                        </div>
+                        <h3>Environnements</h3>
+                        <div class="visual-skills-category environments-category">
+                            <div class="visual-skill-item"><img src="assets/visual-skills/postgresql.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/kafka.svg" alt="Kafka"><span>Kafka</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/cassandra.svg" alt="Cassandra"><span>Cassandra</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/elasticsearch.svg" alt="Elasticsearch"><span>Elasticsearch</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/bazel.svg" alt="Bazel"><span>Bazel</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/docker.svg" alt="Docker"><span>Docker</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/github.svg" alt="GitHub"><span>GitHub</span></div>
+                            <div class="visual-skill-item"><img src="assets/visual-skills/unity.svg" alt="Unity"><span>Unity</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="experience" class="tab-content">
+                 <div class="lang-content active" data-lang="en">
+                    <h2>Work Experience</h2>
+                    <div class="experience-timeline">
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Staff Software Engineer — Cryptosense / SandboxAQ</h3></div>
+                           <div class="experience-meta">Remote · 08/2021 – Present</div>
+                           <div class="experience-description">Design and development of two generations of <strong>SaaS platforms</strong> for <strong>continuous inventory</strong> and <strong>Cryptographic Lifecycle Management (CLM)</strong> of keys, certificates, secrets, and Non-Human Identities (NHI). <strong>Backend development</strong>, <strong>data modeling</strong>, <strong>API and connector design</strong> for cryptographic cartography and vulnerability detection related to post-quantum cryptography (PQC). <strong>Design and technical leadership</strong> of a <strong>full technological migration</strong> of the legacy file system scanner from OCaml to a high-performance, extensible Rust implementation.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> Python, Rust, OCaml, Kotlin, Java, Go, GraphQL, gRPC, Kafka, PostgreSQL, Bazel, GitHub Actions, Docker, Guestfish, Cloud, SaaS</div>
+                           <div class="tech-stack"><strong>Project:</strong> Cryptography Lifecycle Management (CLM) Platform</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> Distributed Systems · Data Modeling · API Design · Security & Compliance · Post-Quantum Cryptography · Event-driven architecture · Service-Oriented Architecture (SOA)</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Full‑Stack Developer — RG System</h3></div>
+                           <div class="experience-meta">Lattes (France) · Hybrid · 06/2017 – 07/2021</div>
+                           <div class="experience-description">Development of a unified <strong>RMM SaaS platform</strong> for MSPs (Managed Service Providers), integrating IT supervision, cybersecurity, backup, and remote control. <strong>Technical lead</strong> on the design and development of key modules (audits, network neighborhood, SNMP monitoring, event-driven/scheduled automation, client management and billing). <strong>Technical overhaul</strong> and <strong>reorganization of teams</strong> (Dev/Devops/Product/UX) and <strong>workflows</strong> (Git/CI/CD), improving cross-functional collaboration and continuous delivery.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> PHP, C++, Python, JavaScript, Symfony, Doctrine, Qt, jQuery, React, Twig, MS SQL, PostgreSQL, Cassandra, Elasticsearch, Kafka, Git, GitHub, CI/CD, PhpStorm, QtCreator, ZenHub, Travis, Jenkins, Docker, Vagrant, REST, SaaS.</div>
+                           <div class="tech-stack"><strong>Project:</strong> Unified SaaS RMM Platform for MSPs</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> Full-stack Development · Technical Leadership · Agile Methodologies · IT Management · Distributed Systems · Event-driven architecture · Service-Oriented Architecture (SOA)</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Developer — e‑Odyssey (Freelance)</h3></div>
+                           <div class="experience-meta">Remote · 01/2013 – 05/2017</div>
+                           <div class="experience-description">Design, development, and project management of diverse projects (web, mobile, custom software). Conducted requirements analysis, wrote technical and functional specifications, and managed <strong>end-to-end project lifecycle</strong>, ensuring the delivery of <strong>tailored client solutions</strong>. Expertise in <strong>technology stack migrations</strong>.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> PHP, MySQL, C++, C#, Windev, Drupal, Wordpress, Dotclear, Spip.</div>
+                           <div class="tech-stack"><strong>Project:</strong> Diverse Web, Mobile & Software Projects</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> Project Management · Full-stack Development · Requirements Analysis</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Analyst Developer — Netia Software</h3></div>
+                           <div class="experience-meta">Claret (France) · 02/2012 – 08/2012</div>
+                           <div class="experience-description">Design and implementation of a <strong>video CMS</strong> (archiving, organization, publishing) with client workflow customization and version control management.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> Java, C++, SQL, Oracle, REST, Git.</div>
+                           <div class="tech-stack"><strong>Project:</strong> Video CMS Development & Customization</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> CMS Development · Workflow Customization · Data Archiving</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Game Programmer — Okugi Studio</h3></div>
+                           <div class="experience-meta">Nîmes (France) · 05/2011 – 12/2011</div>
+                           <div class="experience-description">Gameplay programming and cross-platform finalization, ensuring technical quality and platform-specific optimizations.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> C#, Unity, Android/iOS, Jira.</div>
+                           <div class="tech-stack"><strong>Project:</strong> ShadO (PC) · Twist n'Catch (Mobile)</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> Gameplay Programming · Cross-platform Development · Mobile Game Development</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Engine Programmer — Robopolis Studio</h3></div>
+                           <div class="experience-meta">Villeurbanne (France) · 01/2010 – 03/2011</div>
+                           <div class="experience-description">Design and development of an <strong>Augmented Reality game engine</strong> integrated with the sensors and motors of a <strong>physical robot</strong>, enabling interactive and responsive gameplay experiences. Developed internal tools for robot control and calibration.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> C++, OpenGL, OpenSceneGraph, ARToolkit Pro, Bullet.</div>
+                           <div class="tech-stack"><strong>Project:</strong> Sparx Augmented Robot</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> AR Game Engine Development · Gameplay Programming · Internal Tools Development · Robotics</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Engineering & Development — Phoenix Interactive</h3></div>
+                           <div class="experience-meta">Lyon (France) · 03/2007 – 11/2009</div>
+                           <h4>R&D Engineer (Engine / Tools)</h4>
+                           <div class="experience-meta">12/2008 – 11/2009</div>
+                           <h4>Team Lead (Engine / Gameplay)</h4>
+                           <div class="experience-meta">12/2007 – 12/2008</div>
+                           <h4>Gameplay / AI / Tools Programmer</h4>
+                           <div class="experience-meta">03/2007 – 12/2007</div>
+                           <div class="experience-description">Led programming teams (<strong>engine</strong> and <strong>gameplay</strong>). Designed and developed two <strong>in-house engines and editors</strong>: one for <strong>Nintendo DS</strong> (supervision and development) and one <strong>multi-platform</strong> (Wii / PC / PS3). Improved the editor and implemented <strong>gameplay features</strong> (AI, mini-games, menus, save systems). <strong>R&D work</strong> included <strong>console technical studies</strong> (PS3, DS), <strong>graphics rendering prototypes</strong>, <strong>development environment deployment</strong>, <strong>library porting</strong>, and creation of <strong>internal tools</strong> for data management and build automation.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> C/C++, DS/Wii/PS2/PS3 SDKs, Jade Script, Qt, Perforce, Jenkins, Visual Studio, CodeWarrior, SN System, SVN, FinalBuilder, Lua, Ogre, OpenGL, DirectX, Zlib.</div>
+                           <div class="tech-stack"><strong>Projects:</strong> Arthur and the Revenge of Maltazard (Wii/PC/PS3) · Petz Rescue: Endangered Paradise (DS) · Alexandra Ledermann 2009 (Wii/PC) · Horsez 2 (Wii/PS2/PC)</div>
+                           <div class="tech-stack"><strong>Core Skills:</strong> Game Engine Development · Cross-Platform Development · Team Leadership</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                     <h2>Expérience Professionnelle</h2>
+                     <div class="experience-timeline">
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Staff Software Engineer — Cryptosense / SandboxAQ</h3></div>
+                           <div class="experience-meta">Remote · 08/2021 – Présent</div>
+                           <div class="experience-description">Conception et développement de deux générations de <strong>plateformes SaaS</strong> d'<strong>inventaire continu</strong> et de <strong>gestion du cycle de vie cryptographique (CLM)</strong> pour les clés, certificats, secrets et identités non humaines (NHI). <strong>Développement backend</strong>, <strong>modélisation de données</strong>, <strong>conception d'APIs et de connecteurs</strong> pour la cartographie cryptographique et la détection des vulnérabilités liées à la cryptographie post-quantique (PQC). <strong>Conception et pilotage technique</strong> d'une <strong>migration technologique complète</strong> du scanner de systèmes de fichiers historique en OCaml vers une implémentation Rust plus performante et extensible.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> Python, Rust, OCaml, Kotlin, Java, Go, GraphQL, gRPC, Kafka, PostgreSQL, Flask, Bazel, GitHub Actions, Docker, Guestfish, Cloud, SaaS</div>
+                           <div class="tech-stack"><strong>Projet :</strong> Plateforme de Gestion du Cycle de Vie de la Cryptographie (CLM)</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Systèmes Distribués · Modélisation de Données · Conception d'API · Sécurité & Conformité · Cryptographie Post-Quantique · Architecture Événementielle · Architecture Orientée Services (SOA)</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Développeur Full‑Stack — RG System</h3></div>
+                           <div class="experience-meta">Lattes (France) · Hybrid · 06/2017 – 07/2021</div>
+                           <div class="experience-description">Développement d'une plateforme <strong>RMM SaaS unifiée</strong> pour les MSPs (Managed Service Providers), intégrant la supervision IT, la cybersécurité, la sauvegarde et le contrôle à distance. <strong>Lead technique</strong> sur la conception et le développement de modules clés (audits, voisinage réseau, surveillance SNMP, automatisation événementielle/planifiée, gestion et facturation clients). <strong>Refonte technique</strong> et <strong>réorganisation des équipes</strong> (Dev/Devops/Produit/UX) ainsi que des <strong>workflows</strong> (Git/CI/CD), améliorant la collaboration inter-métiers et la livraison continue.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> PHP, C++, Python, JavaScript, Symfony, Doctrine, Qt, jQuery, React, Twig, MS SQL, PostgreSQL, Cassandra, Elasticsearch, Kafka, Git, GitHub, CI/CD, PhpStorm, QtCreator, ZenHub, Travis, Jenkins, Docker, Vagrant, REST, SaaS.</div>
+                           <div class="tech-stack"><strong>Projet :</strong> Plateforme RMM SaaS Unifiée pour MSPs</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Développement Full-stack · Leadership Technique · Méthodologies Agiles · Gestion IT · Systèmes Distribués · Architecture Événementielle · Architecture Orientée Services (SOA)</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Développeur — e‑Odyssey (Freelance)</h3></div>
+                           <div class="experience-meta">Remote · 01/2013 – 05/2017</div>
+                           <div class="experience-description">Conception, développement et gestion de projets variés (web, applications mobiles, logiciels sur mesure). Analyse des besoins, rédaction des spécifications techniques et fonctionnelles, et pilotage du <strong>cycle de vie complet des projets</strong>, assurant la livraison de <strong>solutions adaptées aux besoins des clients</strong>. Expertise en <strong>migration de piles technologiques</strong>.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> PHP, MySQL, C++, C#, Windev, Drupal, Wordpress, Dotclear, Spip.</div>
+                           <div class="tech-stack"><strong>Projet :</strong> Projets Web, Mobile & Logiciels Divers</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Gestion de Projet · Développement Full-stack · Analyse des Besoins</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Analyste Concepteur — Netia Software</h3></div>
+                           <div class="experience-meta">Claret (France) · 02/2012 – 08/2012</div>
+                           <div class="experience-description">Conception et réalisation d'un <strong>CMS vidéo</strong> (archivage, hiérarchisation, publication) avec <strong>personnalisation des workflows clients</strong> et <strong>gestion du contrôle de version</strong>.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> Java, C++, SQL, Oracle, REST, Git.</div>
+                           <div class="tech-stack"><strong>Projet :</strong> Développement & Personnalisation de CMS Vidéo</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Développement CMS · Personnalisation de Workflow · Archivage de Données</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Programmeur Jeu Vidéo — Okugi Studio</h3></div>
+                           <div class="experience-meta">Nîmes (France) · 05/2011 – 12/2011</div>
+                           <div class="experience-description">Réalisation de la <strong>programmation gameplay</strong> et de la <strong>finalisation multiplateforme</strong>, assurant la qualité technique et les optimisations spécifiques à chaque plateforme.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> C#, Unity, Android/iOS toolchains, Jira.</div>
+                           <div class="tech-stack"><strong>Projet :</strong> ShadO (PC) · Twist n'Catch (Mobile)</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Programmation Gameplay · Développement Multi-plateforme · Développement de Jeux Mobiles</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Programmeur Moteur — Robopolis Studio</h3></div>
+                           <div class="experience-meta">Villeurbanne (France) · 01/2010 – 03/2011</div>
+                           <div class="experience-description">Conception et développement d'un <strong>moteur de jeu en réalité augmentée</strong>, intégré aux capteurs et moteurs d'un <strong>robot physique</strong>, permettant des expériences de jeu interactives et réactives. Développement d'outils internes pour le contrôle et la calibration du robot.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> C++, OpenGL, Computer Vision (AR), OpenSceneGraph, ARToolkit Pro, osgART, Bullet.</div>
+                           <div class="tech-stack"><strong>Projet :</strong> Robot Augmenté Sparx</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Développement Moteur de Jeu RA · Programmation Gameplay · Développement d'Outils Internes · Robotique</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Ingénierie & Développement — Phoenix Interactive</h3></div>
+                           <div class="experience-meta">Lyon (France) · 03/2007 – 11/2009</div>
+                           <h4>Ingénieur R&D (Moteur / Outils)</h4>
+                           <div class="experience-meta">12/2008 – 11/2009</div>
+                           <h4>Chef d'équipe (Moteur / Gameplay)</h4>
+                           <div class="experience-meta">12/2007 – 12/2008</div>
+                           <h4>Programmeur Gameplay / IA / Outils</h4>
+                           <div class="experience-meta">03/2007 – 12/2007</div>
+                           <div class="experience-description">Management d'équipes de programmation (<strong>moteur</strong> et <strong>gameplay</strong>). Développement de deux <strong>moteurs et éditeurs internes</strong> : un pour <strong>Nintendo DS</strong> (supervision et développement) et un <strong>multiplateforme</strong> (Wii / PC / PS3). Amélioration de l'éditeur et implémentation de fonctionnalités gameplay (<strong>IA</strong>, mini-jeux, menus, sauvegardes). Travaux de <strong>R&D</strong> : études techniques <strong>consoles</strong> (PS3, DS), prototypes de <strong>rendu graphique</strong>, déploiement d'<strong>environnements de développement</strong>, portage de <strong>librairies</strong>, et création d'<strong>outils internes</strong> pour la gestion des données et l'automatisation des builds.</div>
+                           <div class="tech-stack"><strong>Tech:</strong> C/C++, DS/Wii/PS2/PS3 SDKs, Jade Script, Qt, Perforce, Jenkins, Visual Studio, CodeWarrior, SN System, SVN, FinalBuilder, Lua, Ogre, OpenGL, DirectX, Zlib.</div>
+                           <div class="tech-stack"><strong>Projets :</strong> Arthur et la Vengeance de Maltazard (Wii/PC/PS3) · Planète Nature : Au Secours de l'Île Tropicale (DS) · Alexandra Ledermann 2009 (Wii/PC) · Alexandra Ledermann : Le Haras de la Vallée (Wii/PS2/PC)</div>
+                           <div class="tech-stack"><strong>Compétences Clés:</strong> Développement Moteur de Jeu · Développement Multi-plateforme · Leadership d'Équipe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="skills" class="tab-content">
+                 <div class="lang-content active" data-lang="en">
+                    <h2>Technical Skills</h2>
+                    <div class="skill-category">
+                        <h3>Software Development & Data</h3>
+                        <div class="skill-item"><strong>Languages:</strong> <span>Python, Rust, Kotlin, PHP, OCaml, C++, C, C#, Java, Lua, SQL, Go, JS, Bash, PowerShell, Lisp, Windev</span></div>
+                        <div class="skill-item"><strong>Back-end & APIs:</strong> <span>REST, FastAPI, Flask, GraphQL, SQLAlchemy, gRPC, Protobuf, Doctrine</span></div>
+                        <div class="skill-item"><strong>Web & Front-end:</strong> <span>React, Symfony, jQuery, xHTML, CSS, Twig, Drupal, Wordpress, Dotclear, Spip</span></div>
+                        <div class="skill-item"><strong>Data & Messaging:</strong> <span>Apache Kafka ecosystem (Kafka, Connect, Schema Registry, ksqlDB)</span></div>
+                        <div class="skill-item"><strong>Databases & Search:</strong> <span>PostgreSQL, Elasticsearch, Cassandra, MSSQL, Oracle, NoSQL, MySQL</span></div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Systems & Architecture</h3>
+                         <div class="skill-item"><strong>Infrastructure & Tooling:</strong> <span>Docker, Linux, Git, GitHub, CI/CD (GitHub Actions), Jenkins, Visual Studio, Qt, Bazel, Perforce, Observability (logs/metrics), Guestfish, AWS/GCP (API integration), PhpStorm, QtCreator, Travis, Vagrant, CodeWarrior, SN System, SVN, FinalBuilder, Monorepo</span></div>
+                        <div class="skill-item"><strong>Architecture & Design:</strong> <span>System design, Domain modeling, Clean code, Design patterns, Architecture MVC, Event-driven systems, Scrum/Kanban, Functional & technical analysis, Quality assurance, Technical documentation, Design documentation, V-cycle, Distributed Systems, Service-Oriented Architecture (SOA)</span></div>
+                        <div class="skill-item"><strong>Security & Compliance:</strong> <span>Hardening, Encryption, Key/certificate/secret management, Pipeline integration, Data modeling, Artefact analysis, Compliance & Inventory</span></div>
+                        <div class="skill-item"><strong>Embedded & Networking:</strong> <span>Raspberry Pi, SNMP</span></div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Leadership & Practices</h3>
+                        <div class="skill-item"><strong>Processes & Practices:</strong> <span>Agile methods, TDD, Code review, Testing & validation, Continuous improvement, Branching strategy, Full-stack development, Project management, R&D, Software lifecycle, Client needs definition, ZenHub, Jira</span></div>
+                        <div class="skill-item"><strong>Technical Leadership:</strong> <span>E2E delivery, Project ownership, Team guidance, Mentoring, Knowledge sharing, Stakeholder communication, Cross-functional collaboration, Team Management, Cross-functional communication</span></div>
+                        <div class="skill-item"><strong>Knowledge Base:</strong> <span>Software engineering, Computer science, Algorithmics, full Scrum, ITIL 4, Regex, Zlib</span></div>
+                        <div class="skill-item"><strong>Soft Skills:</strong> <span>Communication, Adaptability, Autonomy, Creativity, Versatility</span></div>
+                    </div>
+                     <div class="skill-category">
+                        <h3>Specialized, Creative & Research</h3>
+                        <div class="skill-item"><strong>AI, Imaging & Extended Reality:</strong> <span>Artificial intelligence, Computer vision, Augmented reality, Combinatorial Optimization, ARToolkit Pro, osgART, Robotics</span></div>
+                        <div class="skill-item"><strong>Game Development:</strong> <span>Unity, Game engines, Cross-platform development, OpenGL, Android/iOS toolchains, Game design, Console SDKs (Nintendo DS/Wii, PlayStation 2/3), OpenSceneGraph, Bullet, Ogre, DirectX</span></div>
+                    </div>
+                </div>
+                 <div class="lang-content" data-lang="fr">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skill-category">
+                        <h3>Développement & Données</h3>
+                        <div class="skill-item"><strong>Langages:</strong> <span>Python, Rust, Kotlin, PHP, OCaml, C++, C, C#, Java, Lua, SQL, Go, JS, Bash, PowerShell, Lisp, Windev</span></div>
+                        <div class="skill-item"><strong>Back-end & APIs:</strong> <span>REST, FastAPI, Flask, GraphQL, SQLAlchemy, gRPC, Protobuf, Doctrine</span></div>
+                        <div class="skill-item"><strong>Web & Front-end:</strong> <span>React, Symfony, jQuery, xHTML, CSS, Twig, Drupal, Wordpress, Dotclear, Spip</span></div>
+                        <div class="skill-item"><strong>Données & Messagerie:</strong> <span>Apache Kafka ecosystem (Kafka, Connect, Schema Registry, ksqlDB)</span></div>
+                        <div class="skill-item"><strong>Bases de Données & Recherche:</strong> <span>PostgreSQL, Elasticsearch, Cassandra, MSSQL, Oracle, NoSQL, MySQL</span></div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Systèmes & Architecture</h3>
+                         <div class="skill-item"><strong>Infrastructure & Outils:</strong> <span>Docker, Linux, Git, GitHub, CI/CD (GitHub Actions), Jenkins, Visual Studio, Qt, Bazel, Perforce, Observabilité (logs/metrics), Guestfish, AWS/GCP (intégration API), PhpStorm, QtCreator, Travis, Vagrant, CodeWarrior, SN System, SVN, FinalBuilder, Monorepo</span></div>
+                        <div class="skill-item"><strong>Architecture & Conception:</strong> <span>Conception système, Modélisation de domaine, Code propre, Patrons de conception, Architecture MVC, Systèmes événementiels, Scrum/Kanban, Analyse fonctionnelle & technique, Assurance qualité, Documentation technique, Documentation de conception, Cycle en V, Systèmes Distribués, Architecture Orientée Services (SOA)</span></div>
+                        <div class="skill-item"><strong>Sécurité & Conformité:</strong> <span>Durcissement, Chiffrement, Gestion clés/certificats/secrets, Intégration pipeline, Modélisation des données, Analyse d'artefacts, Conformité & Inventaire</span></div>
+                        <div class="skill-item"><strong>Systèmes Embarqués & Réseaux:</strong> <span>Raspberry Pi, SNMP</span></div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Leadership, Méthodologie & Pratiques</h3>
+                        <div class="skill-item"><strong>Processus & Pratiques:</strong> <span>Méthodes Agiles, TDD, Revue de code, Tests & validation, Amélioration continue, Stratégie de branchement, Développement Full-stack, Gestion de projet, R&D, Cycle de vie logiciel, Définition des besoins clients, ZenHub, Jira</span></div>
+                        <div class="skill-item"><strong>Leadership Technique:</strong> <span>Livraison E2E, Appropriation de projet, Encadrement d'équipe, Mentorat, Partage de connaissances, Communication parties prenantes, Collaboration transversale, Gestion d'équipe, Communication transversale</span></div>
+                        <div class="skill-item"><strong>Connaissances:</strong> <span>Ingénierie logicielle, Informatique, Algorithmie, full Scrum, ITIL 4, Regex, Zlib</span></div>
+                        <div class="skill-item"><strong>Compétences Transversales:</strong> <span>Communication, Adaptabilité, Autonomie, Créativité, Polyvalence</span></div>
+                    </div>
+                     <div class="skill-category">
+                        <h3>Spécialisation, Créativité & Recherche</h3>
+                        <div class="skill-item"><strong>IA, Image & Réalité Étendue:</strong> <span>Intelligence artificielle, Vision par ordinateur, Réalité augmentée, Optimisation combinatoire, ARToolkit Pro, osgART, Robotique</span></div>
+                        <div class="skill-item"><strong>Développement de Jeux:</strong> <span>Unity, Moteurs de jeu, Développement multi-plateforme, OpenGL, Chaînes d'outils Android/iOS, Conception de jeux, SDKs Console (Nintendo DS/Wii, PlayStation 2/3), OpenSceneGraph, Bullet, Ogre, DirectX</span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="education" class="tab-content">
+                <div class="lang-content active" data-lang="en">
+                    <h2>Education</h2>
+                    <div class="experience-timeline">
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>MSc Computer Science <em>(Image & Artificial Intelligence)</em></h3></div>
+                           <div class="experience-meta">University of Burgundy — 2007</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>BSc Computer Science & Applied Mathematics</h3></div>
+                           <div class="experience-meta">University Nice-Sophia-Antipolis — 2005</div>
+                        </div>
+                    </div>
+                    <h2 style="margin-top: 2.5rem;">Certifications</h2>
+                     <div class="experience-timeline">
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>MIT xPRO — Quantum Algorithms for Cybersecurity, Chemistry, and Optimization</h3></div>
+                           <div class="experience-meta">2023 · <a href="https://xpro.mit.edu/certificate/9a326ebc-c446-4456-a839-cd36e870386a/" target="_blank" class="cert-link">View Certificate</a></div>
+                           <div class="tech-stack"><strong>Skills:</strong> Quantum Computing · Optimization · Cybersecurity</div>
+                        </div>
+                         <div class="experience-item">
+                           <div class="experience-header"><h3>Harvard Medical School (HMX Pro) — Pharmacology — Drug Discovery & Development</h3></div>
+                           <div class="experience-meta">2023 · <a href="assets/certs/HMX Pro Drug Discovery and Development - Certificate.pdf" target="_blank" class="cert-link">View Certificate</a></div>
+                           <div class="tech-stack"><strong>Skills:</strong> Drug Discovery · Drug Development</div>
+                        </div>
+                         <div class="experience-item">
+                           <div class="experience-header"><h3>AXELOS Global Best Practice — ITIL Foundation Level</h3></div>
+                           <div class="experience-meta">2018 · <a href="assets/certs/ITIL%20Foundation%20-%20Certificate.pdf" target="_blank" class="cert-link">View Certificate</a></div>
+                           <div class="tech-stack"><strong>Skills:</strong> Process Management · Service Management</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lang-content" data-lang="fr">
+                    <h2>Formation</h2>
+                     <div class="experience-timeline">
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Master Informatique <em>(Image & Intelligence Artificielle)</em></h3></div>
+                           <div class="experience-meta">Université de Bourgogne — 2007</div>
+                        </div>
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>Licence Informatique & Mathématiques Appliquées</h3></div>
+                           <div class="experience-meta">Université Nice-Sophia-Antipolis — 2005</div>
+                        </div>
+                    </div>
+                     <h2 style="margin-top: 2.5rem;">Certifications</h2>
+                     <div class="experience-timeline">
+                        <div class="experience-item">
+                           <div class="experience-header"><h3>MIT xPRO — Algorithmes Quantiques pour la Cybersécurité, la Chimie et l'Optimisation</h3></div>
+                           <div class="experience-meta">2023 · <a href="https://xpro.mit.edu/certificate/9a326ebc-c446-4456-a839-cd36e870386a/" target="_blank" class="cert-link">Voir le certificat</a></div>
+                           <div class="tech-stack"><strong>Compétences :</strong> Informatique Quantique · Optimisation · Cybersécurité</div>
+                        </div>
+                         <div class="experience-item">
+                           <div class="experience-header"><h3>Harvard Medical School (HMX Pro) — Pharmacologie — Découverte & Développement de Médicaments</h3></div>
+                           <div class="experience-meta">2023 · <a href="assets/certs/HMX%20Pro%20Drug%20Discovery%20and%20Development%20-%20Certificate.pdf" target="_blank" class="cert-link">Voir le certificat</a></div>
+                           <div class="tech-stack"><strong>Compétences :</strong> Découverte de Médicaments · Développement de Médicaments</div>
+                        </div>
+                         <div class="experience-item">
+                           <div class="experience-header"><h3>AXELOS Global Best Practice — Niveau Fondamental ITIL</h3></div>
+                           <div class="experience-meta">2018 · <a href="assets/certs/ITIL%20Foundation%20-%20Certificate.pdf" target="_blank" class="cert-link">Voir le certificat</a></div>
+                           <div class="tech-stack"><strong>Compétences :</strong> Gestion des Processus · Gestion des Services</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            const tabbuttons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function switchLanguage(evt, lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if (evt) {
+                evt.currentTarget.classList.add('active');
+            } else {
+                document.querySelector(`.lang-btn[onclick*="'${lang}'"]`).classList.add('active');
+            }
+            document.querySelectorAll('.lang-content').forEach(content => {
+                if (content.dataset.lang === lang) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        function setTheme(theme) {
+            const root = document.documentElement;
+            if (theme === 'light') {
+                root.style.setProperty('--primary-purple', 'var(--light-primary-purple)');
+                root.style.setProperty('--bg-dark', 'var(--light-bg-dark)');
+                root.style.setProperty('--bg-light-dark', 'var(--light-bg-light-dark)');
+                root.style.setProperty('--border-dark', 'var(--light-border-dark)');
+                root.style.removeProperty('--text-primary');
+                root.style.removeProperty('--text-secondary');
+                root.style.removeProperty('--text-muted');
+                document.body.classList.add('light-theme');
+                document.body.classList.remove('dark-theme');
+            } else {
+                root.style.removeProperty('--primary-purple');
+                root.style.removeProperty('--bg-dark');
+                root.style.removeProperty('--bg-light-dark');
+                root.style.removeProperty('--border-dark');
+                root.style.removeProperty('--text-primary');
+                root.style.removeProperty('--text-secondary');
+                root.style.removeProperty('--text-muted');
+                document.body.classList.add('dark-theme');
+                document.body.classList.remove('light-theme');
+            }
+
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.theme-btn[onclick*="'${theme}'"]`).classList.add('active');
+            localStorage.setItem('theme', theme);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+             switchLanguage(null, 'en');
+             document.querySelector('.tab-button').click();
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.classList.toggle('light-theme', savedTheme === 'light');
+            document.body.classList.toggle('dark-theme', savedTheme === 'dark');
+            setTheme(savedTheme);
+        });
+    </script>
+</body>
+</html>
